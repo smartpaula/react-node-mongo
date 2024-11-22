@@ -1,37 +1,40 @@
 
-import React, { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 
-const Home =() => {
+
+const Home = () => {
     const [users, setUsers] = useState();
 
     useEffect(()=>{
         const fetchUsers = async () => {
-            const res = await fetch(`${process.env/REACT_APP_SERVER_URL}/user`);
-            const data = awaitres.json();
-            setUsers(data);
+          const res = await fetch(`${process.env}/http://localhost:3000/user`);
+          const data = await res.json();  
+          setUsers(data); 
         };
         fetchUsers();
     },[]);
 
     const handleDelete = async (id) => {};
-    
+
     return (
         <div>
-            {users?.map( (user) => (
+           {users?.map( (user)=> (
+              <div>
+                <img src={user.avatar} width={"100%"} height={200} />
                 <div>
-                    <img src={user.avatear} width={"100%"} height={200}/>
+                    <h4>{user.name}</h4>
                     <div>
-                        <h4>{user.name}</h4>
-                        <div>
-                            <Link to ={`/edit/${user._id}`}>Edit</Link>
-                            <button onClick={ () => handleDelete(user._id) }>X</button>
-                        </div>
+                        <Link to={`/edit/${user._id}`}>Edit</Link>
+                        <button onClick={ ()=> handleDelete(user._id) }>X</button>
                     </div>
                 </div>
-            ) )}
+              </div>
+           ) ) }     
         </div>
     );
 };
 
-export default Home;
+
+
+export default Home; 
