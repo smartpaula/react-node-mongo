@@ -1,21 +1,20 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import AddUser from "./pages/AddUser";
-import EditUser from "./pages/EditUser";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AddUser from './components/AddUser';
+import DeleteUser from './components/DeleteUser';
+import UserList from './components/UserList';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Navbar/>
-      <div>
-        <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="add" element={<AddUser/>}/>
-          <Route path="edit/:id" element={<EditUser/>}/>
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<UserList />} />
+        <Route path="/add" element={<AddUser />} />
+        <Route path="/delete" element={<DeleteUser />} />
+      </Routes>
+    </Router>
   );
 }
 
